@@ -1,6 +1,9 @@
-var userChoiceArr = [];
+var userChoice = []
 
-
+var lower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var upper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var spChar = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '[', ']', '<', '>', '?', '~'];
+var num = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -14,133 +17,26 @@ function writePassword() {
 
 }
 
-//functions for random
-//Random Lower
-function randomLower() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-}
-console.log(randomLower);
-
-//Random Upper
-function randomUpper() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
-console.log(randomUpper);
-
-
-//Random Number
-function randomNumber() {
-    return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-}
-console.log(randomNumber);
-
-
-//Random Symbol
-function randomSymbol() {
-    const symbolArr = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '=', '<', '>', '.', ',', '/', '{', '}', '[', ']'];
-    return String.symbolArr(Math.floor(Math.random()));
-}
-
-console.log(randomSymbol);
-
-
-
-
-function generatePassword() {
-
-
-}
-
 function promptUser () {
-    userChoiceArr = [];
-//prompt user criteria 1 :length
-
-    //Ask user for the password length
-    var length = parseInt(prompt("Please enter a number for your password length. Passwords must be between 8 and 128 characters."));
-    console.log(length);
-
-    //if NaN prompt user to retry
-    if(isNaN(length) || length < 8 || length > 128 ){
-        alert("Length has to be a number between 8 and 128. Please try again.");
+    var length = prompt('Please enter a number for your password. Passwords must be between 8 and 128 characters.')
+    if (isNaN(length) || length > 8 || length < 128){
+        alert('Please enter a number between 8 and 128, using digits only.')
         return false;
     }
 
-    //take user input and put that into the length var
-
-
-    // If user pressed Cancel, immediately end function
-    if (!length) {
-        return;
+    if (confirm('Do you want to include lower case in your password?')) {
+        userChoice = userChoice.concat(lower);
     }
 
-//prompt user criteria 2 : character types
-
-    //Ask user for lowercase letters
-    var lowercase = confirm("Do you want to use lowercase letters?");
-    console.log(lowercase);
-    //take user input and if yes enable function for lowercase
-
-    //if no do not enable funcion and go to next prompt
-
-    // If user pressed Cancel, immediately end function
-    if (!lowercase) {
-        return;
+    if (confirm('Do you want to include upper case in your password?')) {
+        userChoice = userChoice.concat(upper);
     }
 
-//prompt user criteria 3
-
-    //Ask user for uppercase letters
-    var uppercase = confirm("Do you want to use uppercase letters?");
-    console.log(uppercase);
-    //take user input and if yes enable function for uppercase
-
-    //if no do not enable funcion and go to next prompt
-
-    if (!uppercase) {
-        return;
+    if (confirm('Do you want to include special characters in your password?')) {
+        userChoice = userChoice.concat(spChar);
     }
 
-//prompt user criteria 4
-
-    //Ask user for numbers
-    var numeric = confirm("Do you want to use numbers?");
-    console.log(numeric);
-    //take user input and if yes enable function for numbers
-
-    //if no do not enable funcion and go to next prompt
-
-    if (!numeric) {
-        return;
+    if (confirm('Do you want to include numbers in your password?')) {
+        userChoice = userChoice.concat(num);
     }
-
-//prompt user criteria 5
-    
-    //Ask user special characters
-    var specialChar = confirm("Do you want to use special characters?");
-    console.log(specialChar);
-    //take user input and if yes enable function for special characters
-
-    //if no do not enable funcion and go to next prompt
-
-    if (!specialChar) {
-        return;
-    }
-
-
- //if all character type prompts are no, then prompt user to retry
-    else (length == false || lowercase == false || uppercase == false || numeric == false || specialChar == false);
-    alert("Too few character types were selected, please press the button and try again.");
-
 }
-
-
-
-
-
-
-
-
-
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
