@@ -10,16 +10,23 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+    var prompts = promptUser;
+    var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
-
+    if(prompts) {
+        var password = generatePassword();
+        passwordText.value = password;
+    }
+    else {
+        passwordText.value = '';
+    }
 }
 
 function promptUser () {
-    var length = prompt('Please enter a number for your password. Passwords must be between 8 and 128 characters.')
-    if (isNaN(length) || length > 8 || length < 128){
+    userChoice = [];
+
+    length = prompt('Please enter a number for your password. Passwords must be between 8 and 128 characters.');
+    if (isNaN(length) || length < 8 || length > 128) {
         alert('Please enter a number between 8 and 128, using digits only.')
         return false;
     }
@@ -39,4 +46,13 @@ function promptUser () {
     if (confirm('Do you want to include numbers in your password?')) {
         userChoice = userChoice.concat(num);
     }
+}
+
+function generatePassword () {
+    var password = "";
+    for (var i = 0;  i < length; i++) {
+        var index = Math.floor(Math.random() * userChoice.length)
+        password = password + userChoice[index];
+    }
+    return password;
 }
