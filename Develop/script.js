@@ -8,9 +8,12 @@ var num = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+//When user clicks button, start functions
+generateBtn.addEventListener("click", writePassword);
+
 // Write password to the #password input
 function writePassword() {
-    var prompts = promptUser;
+    var prompts = promptUser();
     var passwordText = document.querySelector("#password");
 
     if(prompts) {
@@ -20,6 +23,15 @@ function writePassword() {
     else {
         passwordText.value = '';
     }
+}
+
+function generatePassword () {
+    var password = "";
+    for (var i = 0;  i < length; i++) {
+        var index = Math.floor(Math.random() * userChoice.length)
+        password = password + userChoice[index];
+    }
+    return password;
 }
 
 function promptUser () {
@@ -46,13 +58,5 @@ function promptUser () {
     if (confirm('Do you want to include numbers in your password?')) {
         userChoice = userChoice.concat(num);
     }
-}
-
-function generatePassword () {
-    var password = "";
-    for (var i = 0;  i < length; i++) {
-        var index = Math.floor(Math.random() * userChoice.length)
-        password = password + userChoice[index];
-    }
-    return password;
+    return true;
 }
