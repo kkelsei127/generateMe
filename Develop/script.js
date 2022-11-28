@@ -58,7 +58,6 @@ function promptUser () {
     if (confirm('Do you want to include numbers in your password?')) {
         userChoice = userChoice.concat(num);
     }
-    else (alert('Too few character types selected, please try again.'))
     
     return true;
 
