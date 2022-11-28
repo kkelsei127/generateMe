@@ -37,10 +37,13 @@ THEN the password is either displayed in an alert or written to the page
 
 ## Screenshots
 
+![The following image shows the completed layout.](./Assets/Screenshot%202022-11-28%20165304.png)
 
+![The following image shows an example generated password.](./Assets/Screenshot%202022-11-28%20165347.png)
 
 ## Link to deployed site
 
+https://kkelsei127.github.io/generateMe/
 
 ## License
 
